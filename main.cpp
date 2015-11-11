@@ -458,6 +458,138 @@ void labyrinth(vector<vector<int>> maze_set, vector<vector<int>> mazes){
 }
 
 
+void wires(){
+    cout<<"Enter wires: ";
+    string cables;
+    
+    cin>>cables;
+    int red = 0, yellow = 0, black = 0, white = 0, blue = 0;
+    
+    int i;
+    
+    for(i=0;i<cables.size();i++){
+        switch (cables.at(i)) {
+            case 'y':
+                yellow++
+                break;
+            case 'w':
+                white++;
+                break;
+            case 'b':
+                black++;
+                break;
+            case 'r':
+                red++;
+                break;
+            case 'a':
+                blue++;
+                break;
+            default:
+                break;
+        }
+    }
+    
+    
+    if(cables.size() == 3){
+        if (red == 0) {
+            cout<<"Cut SECOND wire."<<endl;
+            return;
+        }
+        if (cables.at(2)=='w') {
+            cout<<"Cut LAST wire."<<endl;
+            return;
+        }
+        if(blue>1){
+            if (cables.at(2) == 'a') {
+                cout<<"Cut THIRD wire."<<endl;
+                return;
+            }
+            if (cables.at(1) == 'a') {
+                cout<<"Cut SECOND wire."<<endl;
+                return;
+            }
+            cout<<"Cut FIRST wire."<<endl;
+            return;
+        }
+        cout<<"Cut LAST wire."<<endl;
+        return;
+    }
+    if (cables.size() == 4) {
+        cout<<"Insert the LAST digit of the SERIAL NUMBER: "<<endl;
+        cin>>i;
+        
+        if (red>1 && i%2 == 1) {
+            if (cables.at(3) == 'r') {
+                cout<<"Cut FOURTH wire."<<endl;
+                return;
+            }
+            if (cables.at(2) == 'r') {
+                cout<<"Cut THIRD wire."<<endl;
+                return;
+            }
+            if (cables.at(1) == 'r') {
+                cout<<"Cut SECOND wire."<<endl;
+                return;
+            }
+        }
+        if(cables.at(3)=='y'&&red==0){
+            cout<<"Cut the FIRST wire"<<endl;
+            return;
+        }
+        
+        if (blue == 1) {
+            cout<<"Cut FIRST wire."<<endl;
+            return;
+        }
+        
+        if (yellow>1) {
+            cout<<"Cut the LAST wire."<<endl;
+            return;
+        }
+        cout<<"Cut the SECOND wire."<<endl;
+        return;
+    }
+    
+    if(cables.size() == 5){
+        cout<<"Insert the LAST digit of the SERIAL NUMBER: "<<endl;
+        cin>>i;
+        
+        if (cables.at(4) == 'b' && i%2 == 1) {
+            cout<<"Cut the FOURTH wire."<<endl;
+            return;
+        }
+        if (red == 1 && yellow > 1) {
+            cout<<"Cut the FIRST wire."<<endl;
+            return;
+        }
+        if(black == 0){
+            cout<<"Cut the SECOND wire."<<endl;
+            return;
+        }
+        cout<<"Cut the FIRST wire."<<endl;
+        return;
+    }
+    if(cables.size() == 6){
+        cout<<"Insert the LAST digit of the SERIAL NUMBER: "<<endl;
+        cin>>i;
+        
+        if (yellow == 0 && i%2 == 1) {
+            cout<<"Cut the THIRD wire."<<endl;
+            return;
+        }
+        if (yellow == 1 && white > 1) {
+            cout<<"Cut the FOURTH wire."<<endl;
+            return;
+        }
+        if (red == 0) {
+            cout<<"Cut the LAST wire."<<endl;
+            return;
+        }
+        cout<<"Cut the FOURTH wire."<<endl;
+        return;
+    }
+}
+
 int main(int argc, const char * argv[]) {
     // insert code here...
     
@@ -522,7 +654,11 @@ int main(int argc, const char * argv[]) {
             memory();
             
         } else if(com == "maze"){
+            cout<<"Entering Labyrinth"<<endl;
             labyrinth(maze_set, mazes);
+        } else if(com == "wires") {
+            cout<<"Entering wires"<<endl;
+            wires();
         } else break;
     }
     
