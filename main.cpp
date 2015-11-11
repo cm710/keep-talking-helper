@@ -470,7 +470,7 @@ void wires(){
     for(i=0;i<cables.size();i++){
         switch (cables.at(i)) {
             case 'y':
-                yellow++
+                yellow++;
                 break;
             case 'w':
                 white++;
@@ -528,7 +528,7 @@ void wires(){
                 return;
             }
             if (cables.at(1) == 'r') {
-                cout<<"Cut SECOND wire."<<endl;
+                cout<<"Cut the SECOND wire."<<endl;
                 return;
             }
         }
