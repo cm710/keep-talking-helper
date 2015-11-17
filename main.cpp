@@ -6,8 +6,10 @@
 //  Copyright © 2015 Constantin Manea. All rights reserved.
 //
 
+#include <algorithm>
 #include <iostream>
 #include <fstream>
+#include <string>
 #include <vector>
 #include <list>
 #include <map>
@@ -876,6 +878,65 @@ void compwires(){
     
 }
 
+void whosonfirst(vector<pair<string, int>> who_first_pos, vector<vector<string>> who_first){
+    string word;
+    int i, j;
+    string temp;
+    
+    cout<<"Insert display word (if blank put '<' first):";
+    cin>> word;
+    if (word.at(0) == '<') {
+        word = "<<BLANK>>";
+    }
+    
+    std::transform(word.begin(), word.end(), word.begin(), ::toupper);
+    
+    for (i=0; i<who_first_pos.size(); i++) {
+        if (who_first_pos[i].first == word) {
+            switch (who_first_pos[i].second) {
+                case 1:
+                    cout<<"Type the word in the top left"<<endl;
+                    break;
+                case 2:
+                    cout<<"Type the word in the middle left"<<endl;
+                    break;
+                case 3:
+                    cout<<"Type the word in the bottom left"<<endl;
+                    break;
+                case 4:
+                    cout<<"Type the word in the top right"<<endl;
+                    break;
+                case 5:
+                    cout<<"Type the word in the middle right"<<endl;
+                    break;
+                case 6:
+                    cout<<"Type the word in the bottom right"<<endl;
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
+    }
+    
+    cin>>word;
+    std::transform(word.begin(), word.end(), word.begin(), ::toupper);
+    
+    cout<<"Insert anything if you don't see it. Otherwise insert 'x'."<<endl;
+    for (i=0; i<who_first.size();i++) {
+        if (word == who_first[i][0]) {
+            for (j=1; j<who_first[i].size(); j++) {
+                cout<<who_first[i][j]<<endl;
+                cin>>word;
+                if (word.at(0)=='x') {
+                    return;
+                }
+            }
+            return;
+        }
+    }
+}
+
 
 int main(int argc, const char * argv[]) {
     // insert code here...
@@ -896,6 +957,7 @@ int main(int argc, const char * argv[]) {
 
     vector<vector<int>> maze_set, mazes;
     int temp;
+    string tempstring;
     vector<int> tempvec;
 
     for(i=0;i<9;i++){
@@ -915,7 +977,50 @@ int main(int argc, const char * argv[]) {
     }
 
 
-
+    vector<pair<string, int>> who_first_pos;
+    
+    for (i=0; i<28; i++) {
+        f>>tempstring>>temp;
+        
+        if (tempstring == "HOLDON") {
+            tempstring = "HOLD ON";
+        }
+        
+        if (tempstring == "YOUARE") {
+            tempstring = "YOU ARE";
+        }
+        
+        if (tempstring == "THEYARE") {
+            tempstring = "THEY ARE";
+        }
+        
+        who_first_pos.push_back(pair<string, int>(tempstring, temp));
+    }
+    
+    vector<string> who_first_row;
+    vector<vector<string>> who_first;
+    
+    for (i=0; i<28; i++) {
+        who_first_row.clear();
+        for (j=0; j<15; j++) {
+            f>>tempstring;
+            
+            if (tempstring == "UHHUH") {
+                tempstring = "UH HUH";
+            }
+            
+            if (tempstring == "UHUH") {
+                tempstring = "UH UH";
+            }
+            
+            if (tempstring == "YOUARE") {
+                tempstring = "YOU ARE";
+            }
+            
+            who_first_row.push_back(tempstring);
+        }
+        who_first.push_back(who_first_row);
+    }
 
 
 
@@ -925,12 +1030,8 @@ int main(int argc, const char * argv[]) {
 
     string com;
 
-    map<string, int> commands;
-
-    commands.insert(pair<string, int>("pass", 1));
-
     while(com!="exit"){
-        cout<<endl<<"Enter puzzle type"<<endl<<"(pass, mem, maze, wires, button, wiresec, comp): ";
+        cout<<endl<<"Enter puzzle type"<<endl<<"(pass, mem, maze, wires, button, wiresec, comp, whos): ";
         cin>>com;
         cout<<endl;
         if (com=="pass") {
@@ -955,6 +1056,9 @@ int main(int argc, const char * argv[]) {
         } else if(com == "comp"){
             cout<<"Entering complicated wires"<<endl;
             compwires();
+        } else if(com == "whos"){
+            cout<<"Entering Who's on first"<<endl;
+            whosonfirst(who_first_pos, who_first);
         } else break;
     }
 
