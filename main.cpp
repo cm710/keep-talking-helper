@@ -592,6 +592,94 @@ void wires(){
     }
 }
 
+void hold_button(){
+    string strip_colour;
+    cout<<"Hold the button down and enter the strip colour: ";
+    cin>>strip_colour;
+    
+    if (strip_colour == "blue") {
+        cout<<"Release when the countdown contains a FOUR (4) in any position."<<endl;
+        return;
+    }
+    
+    if (strip_colour == "yellow") {
+        cout<<"Release when the countdown contains a FIVE (5) in any position."<<endl;
+        return;
+    }
+    
+    cout<<"Release when the countdown contains a ONE (1) in any position."<<endl;
+}
+
+bool evalans(string answer){
+    if (answer.at(0) == 'y') {
+        return true;
+    }
+    
+    cout<<answer.at(0)<<endl;
+    
+    if (answer.at(0) <= '9') {
+        return true;
+    }
+    
+    return false;
+}
+
+void button(){
+    string colour;
+    string text;
+    string answer;
+    int nr_bat=-1;
+    
+    cout<<"Enter button colour: ";
+    cin>>colour;
+    cout<<"Enter button text: ";
+    cin>>text;
+    
+    
+    if (colour == "blue" && text == "abort") {
+        hold_button();
+        return;
+    }
+    
+    if (text == "detonate") {
+        cout<<"Insert number of batteries: ";
+        cin>>nr_bat;
+        if (nr_bat>1) {
+            cout<<"Press and IMMEDIATELY release the button."<<endl;
+            return;
+        }
+    }
+    
+    if (colour == "white") {
+        cout<<"Is there a lit indicator with label CAR?";
+        cin>>answer;
+        if (evalans(answer)) {
+            hold_button();
+            return;
+        }
+    }
+    
+    cout<<"Are there more than 2 batteries and a lit FRK indicator?";
+    cin>>answer;
+    if (evalans(answer)) {
+        cout<<"Press and IMMEDIATELY release the button."<<endl;
+        return;
+    }
+    
+    if (colour == "yellow") {
+        hold_button();
+        return;
+    }
+    
+    if (colour == "red" && text == "hold") {
+        cout<<"Press and IMMEDIATELY release the button."<<endl;
+        return;
+    }
+    
+    hold_button();
+    
+}
+
 int main(int argc, const char * argv[]) {
     // insert code here...
 
@@ -645,7 +733,7 @@ int main(int argc, const char * argv[]) {
     commands.insert(pair<string, int>("pass", 1));
 
     while(com!="exit"){
-        cout<<endl<<"Enter puzzle type: ";
+        cout<<endl<<"Enter puzzle type (OUT OF pass, mem, maze, wires, button): ";
         cin>>com;
         cout<<endl;
         if (com=="pass") {
@@ -661,6 +749,9 @@ int main(int argc, const char * argv[]) {
         } else if(com == "wires") {
             cout<<"Entering wires"<<endl;
             wires();
+        } else if(com == "button"){
+            cout<<"Entering Button"<<endl;
+            button();
         } else break;
     }
 
