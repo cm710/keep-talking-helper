@@ -86,9 +86,9 @@ void memory(){
 
     string curlab;
     cout<<endl;
-    cout<<"Enter first display:";
+    cout<<"Enter FIRST display:";
     cin>>disp;
-    cout<<"Enter first row:";
+    cout<<"Enter FIRST row:";
     cin>>curlab;
     temp.clear();
 
@@ -121,9 +121,9 @@ void memory(){
     //cout<<"( "<<hist[0].first<<" "<<hist[0].second<<" )"<<endl;
 
     cout<<endl;
-    cout<<"Enter second display:";
+    cout<<"Enter SECOND display:";
     cin>>disp;
-    cout<<"Enter second row:";
+    cout<<"Enter SECOND row:";
     cin>>curlab;
     temp.clear();
 
@@ -160,9 +160,9 @@ void memory(){
 
 
     cout<<endl;
-    cout<<"Enter third display:";
+    cout<<"Enter THIRD display:";
     cin>>disp;
-    cout<<"Enter third row:";
+    cout<<"Enter THIRD row:";
     cin>>curlab;
     temp.clear();
 
@@ -208,9 +208,9 @@ void memory(){
 
 
     cout<<endl;
-    cout<<"Enter fourth display:";
+    cout<<"Enter FOURTH display:";
     cin>>disp;
-    cout<<"Enter fourth row:";
+    cout<<"Enter FOURTH row:";
     cin>>curlab;
     temp.clear();
 
@@ -241,9 +241,9 @@ void memory(){
     }
 
     cout<<endl;
-    cout<<"Enter fifth display:";
+    cout<<"Enter FIFTH display:";
     cin>>disp;
-    cout<<"Enter fifth row:";
+    cout<<"Enter FIFTH row:";
     cin>>curlab;
     temp.clear();
 
