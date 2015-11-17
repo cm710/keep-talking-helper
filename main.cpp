@@ -597,12 +597,12 @@ void hold_button(){
     cout<<"Hold the button down and enter the strip colour: ";
     cin>>strip_colour;
     
-    if (strip_colour == "blue") {
+    if (strip_colour.at(0) == 'b') {
         cout<<"Release when the countdown contains a FOUR (4) in any position."<<endl;
         return;
     }
     
-    if (strip_colour == "yellow") {
+    if (strip_colour.at(0) == 'y') {
         cout<<"Release when the countdown contains a FIVE (5) in any position."<<endl;
         return;
     }
@@ -614,8 +614,6 @@ bool evalans(string answer){
     if (answer.at(0) == 'y') {
         return true;
     }
-    
-    cout<<answer.at(0)<<endl;
     
     if (answer.at(0) <= '9') {
         return true;
@@ -634,6 +632,24 @@ void button(){
     cin>>colour;
     cout<<"Enter button text: ";
     cin>>text;
+    
+    switch (colour.at(0)) {
+        case 'b':
+            colour = "blue";
+            break;
+        case 'w':
+            colour = "white";
+            break;
+        case 'y':
+            colour = "yellow";
+            break;
+        case 'r':
+            colour = "red";
+            break;
+        
+        default:
+            break;
+    }
     
     
     if (colour == "blue" && text == "abort") {
@@ -659,12 +675,23 @@ void button(){
         }
     }
     
-    cout<<"Are there more than 2 batteries and a lit FRK indicator?";
-    cin>>answer;
-    if (evalans(answer)) {
-        cout<<"Press and IMMEDIATELY release the button."<<endl;
-        return;
+    if(nr_bat > 2){
+        cout<<"Is FRK lit on the side? ";
+        cin>>answer;
+        if (evalans(answer)) {
+            cout<<"Press and IMMEDIATELY release the button."<<endl;
+            return;
+        }
     }
+    if (nr_bat < 0) {
+        cout<<"Are there more than 2 batteries and a lit FRK indicator?";
+        cin>>answer;
+        if (evalans(answer)) {
+            cout<<"Press and IMMEDIATELY release the button."<<endl;
+            return;
+        }
+    }
+    
     
     if (colour == "yellow") {
         hold_button();
@@ -677,6 +704,55 @@ void button(){
     }
     
     hold_button();
+    
+}
+
+void wiresec(){
+    //Red to A = 11
+    //Blue to C = 23
+    //Black to B = 32
+    int red[9] = {1, 2, 4, 5, 2, 5, 7, 6, 2};
+    int blue[9] = {2, 5, 2, 4, 2, 3, 1, 5, 1};
+    int black[9] = {7, 5, 2, 5, 2, 3, 6, 1, 1};
+    
+    int redc = 0, bluec = 0, blackc = 0;
+    
+    int curwire = 0;
+    int temp;
+    cout<<"Begin writing the wires:"<<endl;
+    
+    while (curwire<100) {
+        cin>>curwire;
+        temp=1<<(3-curwire%10);
+        switch (curwire/10) {
+            case 1:
+                if (temp & red[redc]) {
+                    cout<<curwire/10<<" CUT!"<<endl;
+                } else {
+                    cout<<curwire/10<<" DONT!"<<endl;
+                }
+                redc++;
+                break;
+            case 2:
+                if (temp & blue[bluec]) {
+                    cout<<curwire/10<<" CUT!"<<endl;
+                } else {
+                    cout<<curwire/10<<" DONT!"<<endl;
+                }
+                bluec++;
+                break;
+            case 3:
+                if (temp & black[blackc]) {
+                    cout<<curwire/10<<" CUT!"<<endl;
+                } else {
+                    cout<<curwire/10<<" DONT!"<<endl;
+                }
+                blackc++;
+                break;
+            default:
+                return;
+        }
+    }
     
 }
 
@@ -733,7 +809,7 @@ int main(int argc, const char * argv[]) {
     commands.insert(pair<string, int>("pass", 1));
 
     while(com!="exit"){
-        cout<<endl<<"Enter puzzle type (OUT OF pass, mem, maze, wires, button): ";
+        cout<<endl<<"Enter puzzle type"<<endl<<"(pass, mem, maze, wires, button, wiresec): ";
         cin>>com;
         cout<<endl;
         if (com=="pass") {
@@ -752,6 +828,9 @@ int main(int argc, const char * argv[]) {
         } else if(com == "button"){
             cout<<"Entering Button"<<endl;
             button();
+        } else if(com == "wiresec"){
+            cout<<"Entering wire sequences"<<endl;
+            wiresec();
         } else break;
     }
 
