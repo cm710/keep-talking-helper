@@ -92,7 +92,7 @@ void memory(){
     cin>>curlab;
     temp.clear();
 
-    for(i=0;i<3;i++){
+    for(i=0;i<4;i++){
         temp.push_back((int)(curlab.at(i)-'0'));
     }
     mem.push_back(temp);
@@ -127,7 +127,7 @@ void memory(){
     cin>>curlab;
     temp.clear();
 
-    for(i=0;i<3;i++){
+    for(i=0;i<4;i++){
         temp.push_back((int)(curlab.at(i)-'0'));
     }
     mem.push_back(temp);
@@ -135,7 +135,7 @@ void memory(){
     switch (disp) {
         case 1:
             cout<<"Press button with LABEL 4"<<endl;
-            for(i=0;i<3;i++){
+            for(i=0;i<4;i++){
                 if(mem[1][i]==4){
                     hist.push_back(pair<int, int>(i+1, 4));
                     break;
@@ -166,14 +166,14 @@ void memory(){
     cin>>curlab;
     temp.clear();
 
-    for(i=0;i<3;i++){
+    for(i=0;i<4;i++){
         temp.push_back((int)(curlab.at(i)-'0'));
     }
     mem.push_back(temp);
 
     switch (disp) {
         case 1:
-            for(i=0;i<3;i++){
+            for(i=0;i<4;i++){
                 if (mem[2][i]==hist[1].second) {
                     cout<<"Press button with LABEL "<<mem[2][i]<<endl;
                     hist.push_back(pair<int, int>(i+1, mem[2][i]));
@@ -182,7 +182,7 @@ void memory(){
             }
             break;
         case 2:
-            for(i=0;i<3;i++){
+            for(i=0;i<4;i++){
                 if (mem[2][i]==hist[0].second) {
                     cout<<"Press button with LABEL "<<mem[2][i]<<endl;
                     hist.push_back(pair<int, int>(i+1, mem[2][i]));
@@ -195,7 +195,7 @@ void memory(){
             break;
         case 4:
             cout<<"Press button with LABEL 4"<<endl;
-            for(i=0;i<3;i++){
+            for(i=0;i<4;i++){
                 if(mem[2][i]==4){
                     hist.push_back(pair<int, int>(i+1, 4));
                     break;
@@ -214,7 +214,7 @@ void memory(){
     cin>>curlab;
     temp.clear();
 
-    for(i=0;i<3;i++){
+    for(i=0;i<4;i++){
         temp.push_back((int)(curlab.at(i)-'0'));
     }
     mem.push_back(temp);
@@ -247,14 +247,14 @@ void memory(){
     cin>>curlab;
     temp.clear();
 
-    for(i=0;i<3;i++){
+    for(i=0;i<4;i++){
         temp.push_back((int)(curlab.at(i)-'0'));
     }
     mem.push_back(temp);
 
     switch (disp) {
         case 1:
-            for(i=0;i<3;i++){
+            for(i=0;i<4;i++){
                 if (mem[4][i]==hist[0].second) {
                     cout<<"Press button with LABEL "<<mem[4][i]<<endl;
                     hist.push_back(pair<int, int>(i+1, mem[4][i]));
@@ -263,7 +263,7 @@ void memory(){
             }
             break;
         case 2:
-            for(i=0;i<3;i++){
+            for(i=0;i<4;i++){
                 if (mem[4][i]==hist[1].second) {
                     cout<<"Press button with LABEL "<<mem[4][i]<<endl;
                     hist.push_back(pair<int, int>(i+1, mem[4][i]));
@@ -272,7 +272,7 @@ void memory(){
             }
             break;
         case 3:
-            for(i=0;i<3;i++){
+            for(i=0;i<4;i++){
                 if (mem[4][i]==hist[3].second) {
                     cout<<"Press button with LABEL "<<mem[4][i]<<endl;
                     hist.push_back(pair<int, int>(i+1, mem[4][i]));
@@ -281,7 +281,7 @@ void memory(){
             }
             break;
         case 4:
-            for(i=0;i<3;i++){
+            for(i=0;i<4;i++){
                 if (mem[4][i]==hist[2].second) {
                     cout<<"Press button with LABEL "<<mem[4][i]<<endl;
                     hist.push_back(pair<int, int>(i+1, mem[4][i]));
