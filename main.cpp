@@ -99,19 +99,19 @@ void memory(){
 
     switch (disp) {
         case 1:
-            cout<<"Press button in SECOND position"<<endl;
+            cout<<"Press button with LABEL "<<mem[0][1]<<endl;
             hist.push_back(pair<int, int>(2, mem[0][1]));
             break;
         case 2:
-            cout<<"Press button in SECOND position"<<endl;
+            cout<<"Press button with LABEL "<<mem[0][1]<<endl;
             hist.push_back(pair<int, int>(2, mem[0][1]));
             break;
         case 3:
-            cout<<"Press button in THIRD position"<<endl;
+            cout<<"Press button with LABEL "<<mem[0][2]<<endl;
             hist.push_back(pair<int, int>(3, mem[0][2]));
             break;
         case 4:
-            cout<<"Press button in FOURTH position"<<endl;
+            cout<<"Press button with LABEL "<<mem[0][3]<<endl;
             hist.push_back(pair<int, int>(4, mem[0][3]));
             break;
         default:
@@ -147,7 +147,7 @@ void memory(){
             hist.push_back(pair<int, int>(hist[0].first, mem[1][hist[0].first-1]));
             break;
         case 3:
-            cout<<"Press button in FIRST position"<<endl;
+            cout<<"Press button with LABEL "<<mem[1][0]<<endl;
             hist.push_back(pair<int, int>(1, mem[1][0]));
             break;
         case 4:
@@ -192,6 +192,7 @@ void memory(){
             break;
         case 3:
             cout<<"Press button in THIRD position"<<endl;
+            hist.push_back(pair<int, int>(3, mem[2][2]));
             break;
         case 4:
             cout<<"Press button with LABEL 4"<<endl;
@@ -221,19 +222,19 @@ void memory(){
 
     switch (disp) {
         case 1:
-            cout<<"Press button in "<<positions[hist[0].first-1]<<" position"<<endl;
+            cout<<"Press button with LABEL "<<mem[3][hist[0].first-1]<<endl;
             hist.push_back(pair<int, int>(hist[0].first, mem[3][hist[0].first-1]));
             break;
         case 2:
-            cout<<"Press button in FIRST position"<<endl;
-            hist.push_back(pair<int, int>(1, mem[3][1]));
+            cout<<"Press button with LABEL "<<mem[3][0]<<endl;
+            hist.push_back(pair<int, int>(1, mem[3][0]));
             break;
         case 3:
-            cout<<"Press button in "<<positions[hist[1].first-1]<<" position"<<endl;
+            cout<<"Press button with LABEL "<<mem[3][hist[1].first-1]<<endl;
             hist.push_back(pair<int, int>(hist[1].first, mem[3][hist[1].first-1]));
             break;
         case 4:
-            cout<<"Press button in "<<positions[hist[1].first-1]<<" position"<<endl;
+            cout<<"Press button with label "<<mem[3][hist[1].first-1]<<endl;
             hist.push_back(pair<int, int>(hist[1].first, mem[3][hist[1].first-1]));
             break;
         default:
