@@ -756,6 +756,127 @@ void wiresec(){
     
 }
 
+
+void vennlookup(int wirecode, int* sn, int* nr_bat, int* pp){
+    string venn = "CDCBSPDPSBCBSSPD";
+    
+    switch (venn.at(wirecode)) {
+        case 'C':
+            cout<<"P CUT"<<endl;
+            break;
+        case 'D':
+            cout<<"D DON'T"<<endl;
+            break;
+        case 'S':
+            if (*sn < 0) {
+                cout<<"Insert last digit of Serial Number: ";
+                cin>>(*sn);
+            }
+            
+            if ((*sn)%2 == 0) {
+                cout<<"S CUT"<<endl;
+            } else{
+                cout<<"S DON'T"<<endl;
+            }
+            break;
+        case 'P':
+            if (*pp < 0) {
+                cout<<"Insert 1 or more if you have parallel ports: ";
+                cin>>(*pp);
+            }
+            
+            if (*pp > 0) {
+                cout<<"P CUT"<<endl;
+            } else{
+                cout<<"P DON'T"<<endl;
+            }
+            break;
+        case 'B':
+            if (*nr_bat < 0) {
+                cout<<"Insert number of batteries: ";
+                cin>>(*nr_bat);
+            }
+            
+            if (*nr_bat > 1) {
+                cout<<"B CUT"<<endl;
+            } else{
+                cout<<"B DON'T"<<endl;
+            }
+            break;
+            
+        default:
+            break;
+    }
+    cout<<endl;
+}
+
+void compwires(){
+    /*
+     r = red
+     b = blue
+     s = star
+     any digit = led on
+     */
+    int sn = -1, nr_bat = -1, pp = -1;
+    
+    int wirecode; //bitwise -> red, blue, star, led
+    string input;
+    int index;
+    
+    cout<<"Enter wires: "<<endl<<endl;
+    
+    while (true) {
+        wirecode = 0;
+        index = 0;
+        cout<<"Enter wire: ";
+        cin>>input;
+        
+        if (input.at(index) == 'r') {
+            wirecode = wirecode | 8;
+            index++;
+        }
+        if (index < input.size() && input.at(index) == 'b') {
+            wirecode = wirecode | 4;
+            index++;
+        }
+        
+        if (index < input.size() && input.at(index) == 'w') {
+            index++;
+        }
+        
+        if (index == 0) {
+            cout<<"Exiting..."<<endl;
+            return;
+        }
+        
+        if (index < input.size() && input.at(index) == 'r') {
+            wirecode = wirecode | 8;
+            index++;
+        }
+        if (index < input.size() && input.at(index) == 'b') {
+            wirecode = wirecode | 4;
+            index++;
+        }
+        
+        if (index < input.size() && input.at(index) == 'w') {
+            index++;
+        }
+        
+        if (index < input.size() && input.at(index) == 's') {
+            wirecode = wirecode | 2;
+            index++;
+        }
+        
+        if (index < input.size() && input.at(index) <= '9') {
+            wirecode = wirecode | 1;
+            index++;
+        }
+        vennlookup(wirecode, &sn, &nr_bat, &pp);
+    }
+    
+}
+
+
 int main(int argc, const char * argv[]) {
     // insert code here...
 
@@ -809,7 +930,7 @@ int main(int argc, const char * argv[]) {
     commands.insert(pair<string, int>("pass", 1));
 
     while(com!="exit"){
-        cout<<endl<<"Enter puzzle type"<<endl<<"(pass, mem, maze, wires, button, wiresec): ";
+        cout<<endl<<"Enter puzzle type"<<endl<<"(pass, mem, maze, wires, button, wiresec, comp): ";
         cin>>com;
         cout<<endl;
         if (com=="pass") {
@@ -831,6 +952,9 @@ int main(int argc, const char * argv[]) {
         } else if(com == "wiresec"){
             cout<<"Entering wire sequences"<<endl;
             wiresec();
+        } else if(com == "comp"){
+            cout<<"Entering complicated wires"<<endl;
+            compwires();
         } else break;
     }
 
