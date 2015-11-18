@@ -519,22 +519,26 @@ void wires(){
         return;
     }
     if (cables.size() == 4) {
-        cout<<"Insert the LAST digit of the SERIAL NUMBER: "<<endl;
-        cin>>i;
+        
 
-        if (red>1 && i%2 == 1) {
-            if (cables.at(3) == 'r') {
-                cout<<"Cut FOURTH wire."<<endl;
-                return;
+        if (red>1) {
+            cout<<"Insert the LAST digit of the SERIAL NUMBER: "<<endl;
+            cin>>i;
+            if (i%2==1) {
+                if (cables.at(3) == 'r') {
+                    cout<<"Cut FOURTH wire."<<endl;
+                    return;
+                }
+                if (cables.at(2) == 'r') {
+                    cout<<"Cut THIRD wire."<<endl;
+                    return;
+                }
+                if (cables.at(1) == 'r') {
+                    cout<<"Cut the SECOND wire."<<endl;
+                    return;
+                }
             }
-            if (cables.at(2) == 'r') {
-                cout<<"Cut THIRD wire."<<endl;
-                return;
-            }
-            if (cables.at(1) == 'r') {
-                cout<<"Cut the SECOND wire."<<endl;
-                return;
-            }
+            
         }
         if(cables.at(3)=='y'&&red==0){
             cout<<"Cut the FIRST wire"<<endl;
@@ -555,12 +559,15 @@ void wires(){
     }
 
     if(cables.size() == 5){
-        cout<<"Insert the LAST digit of the SERIAL NUMBER: "<<endl;
-        cin>>i;
+        
 
         if (cables.at(4) == 'b' && i%2 == 1) {
-            cout<<"Cut the FOURTH wire."<<endl;
-            return;
+            cout<<"Insert the LAST digit of the SERIAL NUMBER: "<<endl;
+            cin>>i;
+            if (i%2 == 1) {
+                cout<<"Cut the FOURTH wire."<<endl;
+                return;
+            }
         }
         if (red == 1 && yellow > 1) {
             cout<<"Cut the FIRST wire."<<endl;
@@ -574,12 +581,16 @@ void wires(){
         return;
     }
     if(cables.size() == 6){
-        cout<<"Insert the LAST digit of the SERIAL NUMBER: "<<endl;
-        cin>>i;
+        
 
         if (yellow == 0 && i%2 == 1) {
-            cout<<"Cut the THIRD wire."<<endl;
-            return;
+            cout<<"Insert the LAST digit of the SERIAL NUMBER: "<<endl;
+            cin>>i;
+            if (i%2 == 1) {
+                cout<<"Cut the THIRD wire."<<endl;
+                return;
+            }
+            
         }
         if (yellow == 1 && white > 1) {
             cout<<"Cut the FOURTH wire."<<endl;
