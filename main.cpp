@@ -193,7 +193,7 @@ void memory(){
             }
             break;
         case 3:
-            cout<<"Press button in THIRD position"<<endl;
+            cout<<"Press button with LABEL "<<mem[2][2]<<endl;
             hist.push_back(pair<int, int>(3, mem[2][2]));
             break;
         case 4:
