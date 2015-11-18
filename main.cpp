@@ -723,7 +723,7 @@ void wiresec(){
     int temp;
     cout<<"Begin writing the wires:"<<endl;
     
-    while (curwire<100) {
+    while (curwire<34) {
         cin>>curwire;
         temp=1<<(3-curwire%10);
         switch (curwire/10) {
@@ -832,7 +832,7 @@ void compwires(){
         index = 0;
         cout<<"Enter wire: ";
         cin>>input;
-        
+
         if (input.at(index) == 'r') {
             wirecode = wirecode | 8;
             index++;
@@ -932,6 +932,7 @@ void whosonfirst(vector<pair<string, int>> who_first_pos, vector<vector<string>>
                     return;
                 }
             }
+            cout<<"Word not found. Exiting..."<<endl;
             return;
         }
     }
@@ -981,19 +982,6 @@ int main(int argc, const char * argv[]) {
     
     for (i=0; i<28; i++) {
         f>>tempstring>>temp;
-        
-        if (tempstring == "HOLDON") {
-            tempstring = "HOLD ON";
-        }
-        
-        if (tempstring == "YOUARE") {
-            tempstring = "YOU ARE";
-        }
-        
-        if (tempstring == "THEYARE") {
-            tempstring = "THEY ARE";
-        }
-        
         who_first_pos.push_back(pair<string, int>(tempstring, temp));
     }
     
@@ -1004,18 +992,20 @@ int main(int argc, const char * argv[]) {
         who_first_row.clear();
         for (j=0; j<15; j++) {
             f>>tempstring;
-            
-            if (tempstring == "UHHUH") {
-                tempstring = "UH HUH";
+            if (j!=0) {
+                if (tempstring == "UHHUH") {
+                    tempstring = "UH HUH";
+                }
+                
+                if (tempstring == "UHUH") {
+                    tempstring = "UH UH";
+                }
+                
+                if (tempstring == "YOUARE") {
+                    tempstring = "YOU ARE";
+                }
             }
             
-            if (tempstring == "UHUH") {
-                tempstring = "UH UH";
-            }
-            
-            if (tempstring == "YOUARE") {
-                tempstring = "YOU ARE";
-            }
             
             who_first_row.push_back(tempstring);
         }
